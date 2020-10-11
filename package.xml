@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<?xml-model href="http://download.ros.org/schema/package_format3.xsd" schematypens="http://www.w3.org/2001/XMLSchema"?>
+
+<!-- This file specifies metadata for the ezrassor_sim_gazebo ROS package. -->
+<package format="3">
+  <name>ezrassor_sim_gazebo</name>
+  <version>2.0.0</version>
+  <description>Start a Gazebo simulation and expose it to the ROS2 graph.</description>
+  <url type="website">https://github.com/FlaSpaceInst/ezrassor_sim_gazebo</url>
+  <maintainer email="ez.rassor@gmail.com">EZRASSOR Team</maintainer>
+  <author email="ez.rassor@gmail.com">EZRASSOR Team</author>
+  <license>MIT</license>
+
+  <buildtool_depend>ament_cmake</buildtool_depend>
+  <depend>gazebo_ros_pkgs</depend>
+  <depend>ros2launch</depend>
+
+  <export>
+    <build_type>ament_cmake</build_type>
+  </export>
+</package>

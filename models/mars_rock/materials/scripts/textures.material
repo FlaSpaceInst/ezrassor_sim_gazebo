@@ -1,0 +1,13 @@
+material mars/rock
+{
+  technique
+  {
+    pass
+    {
+      texture_unit
+      {
+        texture rock_pattern.jpg
+      }
+    }
+  }
+}

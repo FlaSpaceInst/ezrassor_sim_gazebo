@@ -1,0 +1,120 @@
+<sdf version='1.6'>
+  <world name='mars'>
+
+    <light name='sun' type='directional'>
+      <cast_shadows>1</cast_shadows>
+      <pose frame=''>0 0 10 0 -0 0</pose>
+      <diffuse>0.8 0.8 0.8 1</diffuse>
+      <specular>0.1 0.1 0.1 1</specular>
+      <attenuation>
+        <range>1000</range>
+        <constant>0.9</constant>
+        <linear>0.01</linear>
+        <quadratic>0.001</quadratic>
+      </attenuation>
+      <direction>-0.5 0.5 -1</direction>
+    </light>
+
+    <scene>
+      <ambient>201 137 50 1</ambient>
+      <background>201 137 50 1</background>
+      <shadows>1</shadows>
+      <grid>0</grid>
+      <origin_visual>0</origin_visual>
+      <sky>
+        <time>7</time>
+        <clouds>
+          <humidity>0.0001</humidity>
+          <mean_size>0.0001</mean_size>
+          <ambient>0 0 0 1</ambient>
+        </clouds>
+      </sky>
+    </scene>
+
+    <include>
+      <name>mars</name>
+      <uri>model://dem_mars</uri>
+      <pose>0 0 0 0 0 0</pose>
+      <friction>
+        <mu> 0.01 </mu>
+        <mu2> 0.01 </mu2>
+      </friction>
+    </include> 
+
+    <include>
+      <name>rock_1</name>
+      <uri>model://mars_rock</uri>
+      <pose>18.126667 19.651024 -2.163455 0.029706 0.143569 -0.012499</pose>
+    </include> 
+
+    <include>
+      <name>rock_2</name>
+      <uri>model://mars_rock</uri>
+      <pose>20 22 -2.163455 0.029706 0.143569 1.57</pose>
+    </include> 
+
+    <include>
+      <name>rock_3</name>
+      <uri>model://mars_rock</uri>
+      <pose>20 26 -2.163455 0.029706 0.143569 -1.57</pose>
+    </include> 
+
+    <include>
+      <name>rock_4</name>
+      <uri>model://mars_rock</uri>
+      <pose>24 24 -2.163455 0.029706 0.143569 -3.14</pose>
+    </include>
+    
+    <include>
+      <name>iss</name>
+      <uri>model://iss</uri>
+      <pose>42.634808 11.657930 -4.062596 -0.011634 0.051692 -1.567062</pose>
+    </include>
+
+    <physics name='default_physics' default='0' type='ode'>
+      <max_step_size>0.01</max_step_size>
+      <real_time_factor>1</real_time_factor>
+      <real_time_update_rate>100</real_time_update_rate>
+    </physics>
+
+    <gravity>0 0 -3.711</gravity>
+    <magnetic_field>6e-06 2.3e-05 -4.2e-05</magnetic_field>
+    <atmosphere type='adiabatic'/>
+    <spherical_coordinates>
+      <surface_model>EARTH_WGS84</surface_model>
+      <latitude_deg>0</latitude_deg>
+      <longitude_deg>0</longitude_deg>
+      <elevation>0</elevation>
+      <heading_deg>0</heading_deg>
+    </spherical_coordinates>
+
+    <state world_name='mars'>
+      <sim_time>3310 440000000</sim_time>
+      <real_time>708 421509143</real_time>
+      <wall_time>1554860422 897525301</wall_time>
+      <iterations>65961</iterations>
+      <model name='mars'>
+        <pose frame=''>0 0 0 0 0 0</pose>
+        <scale>1 1 1</scale>
+        <link name='link'>
+          <pose frame=''>0 0 0 0 0 0</pose>
+          <velocity>0 0 0 0 -0 0</velocity>
+          <acceleration>0 0 0 0 -0 0</acceleration>
+          <wrench>0 0 0 0 -0 0</wrench>
+        </link>
+      </model>
+      <light name='sun'>
+        <pose frame=''>0 0 10 0 -0 0</pose>
+      </light>
+    </state>
+
+    <gui fullscreen='0'>
+      <camera name='user_camera'>
+        <pose frame=''>12.632984 -26.474890 1.173335 0 -0.012000 1.740031</pose>
+        <view_controller>orbit</view_controller>
+        <projection_type>perspective</projection_type>
+      </camera>
+    </gui>
+
+  </world>
+</sdf>

@@ -1,0 +1,61 @@
+name: Build
+on:
+  pull_request:
+    branches:
+      - development
+  push:
+    branches:
+      - development
+
+jobs:
+  lint:
+    runs-on: ubuntu-20.04
+    steps:
+      - name: Pull repository
+        uses: actions/checkout@v2
+
+      - name: Set up Python
+        uses: actions/setup-python@v2
+
+      - name: Install linting tools
+        run: python -m pip install --upgrade pip black flake8
+
+      - name: Check Black formatting
+        run: python -m black --check .
+
+      - name: Check PEP8 compliance
+        run: python -m flake8 .
+
+  test:
+    runs-on: ubuntu-18.04
+    steps:
+    - name: Setup ROS 2
+      uses: ros-tooling/setup-ros@0.1.0
+      with:
+        required-ros-distributions: dashing
+
+    - name: Update rosdep
+      run: rosdep update
+
+    - name: Pull repository
+      uses: actions/checkout@v2
+      with:
+        path: src
+
+    - name: Install dependencies
+      run: rosdep install --from-paths src --ignore-src -r -y --rosdistro=foxy
+
+    - name: Install repository
+      run: colcon build
+
+    - name: Upload build logs
+      uses: actions/upload-artifact@v1
+      if: always()
+      with:
+        name: build-logs
+        path: log/latest_build
+
+      # These env paths need to be set from colcon build, otherwise package fails.
+    - name: Check environment hooks
+      run: [[ "$(echo $GAZEBO_MODEL_PATH)" == *"install/ezrassor_sim_gazebo/share/ezrassor_sim_gazebo/models"* ]] &&
+        [[ "$(echo $GAZEBO_RESOURCE_PATH)" == *"install/ezrassor_sim_gazebo/share/ezrassor_sim_gazebo/worlds"* ]]
