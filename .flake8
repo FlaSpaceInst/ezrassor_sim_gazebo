@@ -1,0 +1,6 @@
+[flake8]
+max-line-length = 88
+filename = */test/*,*/nodes/*,*.py
+exclude = */test/*.test
+per-file-ignores =
+    __init__.py: F401
