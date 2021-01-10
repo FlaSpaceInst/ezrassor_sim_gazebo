@@ -57,5 +57,5 @@ jobs:
 
       # These env paths need to be set from colcon build, otherwise package fails.
     - name: Check environment hooks
-      run: [[ "$(echo $GAZEBO_MODEL_PATH)" == *"install/ezrassor_sim_gazebo/share/ezrassor_sim_gazebo/models"* ]] &&
+      run: [[ "$(echo $GAZEBO_MODEL_PATH)" == *"install/ezrassor_sim_gazebo/share/ezrassor_sim_gazebo/models"* ]] && \
         [[ "$(echo $GAZEBO_RESOURCE_PATH)" == *"install/ezrassor_sim_gazebo/share/ezrassor_sim_gazebo/worlds"* ]]
