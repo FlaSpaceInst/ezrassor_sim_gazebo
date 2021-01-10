@@ -56,8 +56,8 @@ jobs:
         path: log/latest_build
 
     - name: Check dir
-      run: pwd && ls
+      run: pwd && ls src
 
     # These env paths need to be set from colcon build, otherwise package fails.
     - name: Check environment hooks
-      run: sh ezrassor_sim_gazebo/test/check-environment.sh
+      run: sh src/ezrassor_sim_gazebo/test/check-environment.sh
