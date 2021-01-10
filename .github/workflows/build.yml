@@ -60,4 +60,4 @@ jobs:
 
     # These env paths need to be set from colcon build, otherwise package fails.
     - name: Check environment hooks
-      run: sh src/ezrassor_sim_gazebo/test/check-environment.sh
+      run: sh src/test/check-environment.sh
