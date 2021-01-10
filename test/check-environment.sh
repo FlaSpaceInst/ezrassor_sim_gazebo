@@ -1,4 +1,5 @@
 #!/bin/sh
+# flake8: noqa
 
 models_path=$(echo $GAZEBO_MODEL_PATH)
 resources_path=$(echo $GAZEBO_RESOURCE_PATH)
