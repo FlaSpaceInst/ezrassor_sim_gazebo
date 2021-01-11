@@ -2,7 +2,6 @@
 # flake8: noqa
 
 # Install package
-rosdep install --from-paths src --ignore-src -r -y --rosdistro=foxy
 colcon build
 
 # Source newly created scripts
