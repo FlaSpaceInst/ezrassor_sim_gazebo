@@ -1,5 +1,12 @@
-#!/bin/sh
+#!/bin/bash
 # flake8: noqa
+
+# Install package
+rosdep install --from-paths src --ignore-src -r -y --rosdistro=foxy
+colcon build
+
+# Source newly created scripts
+source install/setup.bash
 
 models_path=$(echo $GAZEBO_MODEL_PATH)
 resources_path=$(echo $GAZEBO_RESOURCE_PATH)
@@ -16,6 +23,6 @@ fi
 if echo "$resources_path" | grep -q "$pkg_resources"; then
     echo "GAZEBO_RESOURCE_PATH set correctly"
 else
-    echo "$pkg_resources not found in GAZEBO_RESOURCE_PATH: $resources_path
+    echo "$pkg_resources not found in GAZEBO_RESOURCE_PATH: $resources_path"
     return 1
 fi

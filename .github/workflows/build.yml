@@ -26,38 +26,29 @@ jobs:
       - name: Check PEP8 compliance
         run: python -m flake8 .
 
+        
   test:
-    runs-on: ubuntu-18.04
-    steps:
-    - name: Setup ROS 2
-      uses: ros-tooling/setup-ros@0.1.0
-      with:
-        required-ros-distributions: dashing
+    runs-on: ubuntu-latest
+    steps: 
+      - name: Pull repository
+        uses: actions/checkout@v2
 
-    - name: Update rosdep
-      run: rosdep update
+      - name: Make log directory
+        run: mkdir log
 
-    - name: Pull repository
-      uses: actions/checkout@v2
-      with:
-        path: src
+      - name: Build package image (foxy)
+        run: docker build -t ezrassor_sim_gazebo -f build/Dockerfile .
 
-    - name: Install dependencies
-      run: rosdep install --from-paths src --ignore-src -r -y --rosdistro=foxy
+      - name: Test build
+        run: docker run --volume $(pwd)/log:/ezrassor_ws/log ezrassor_sim_gazebo colcon build
 
-    - name: Install repository
-      run: colcon build
+      - name: Upload build logs
+        uses: actions/upload-artifact@v1
+        if: always()
+        with:
+          name: build-logs
+          path: log/latest_build
 
-    - name: Upload build logs
-      uses: actions/upload-artifact@v1
-      if: always()
-      with:
-        name: build-logs
-        path: log/latest_build
-
-    - name: Setup base Gazebo env
-      run: export GAZEBO_MODEL_PATH && export GAZEBO_RESOURCE_PATH
-
-    # These env paths need to be set from colcon build, otherwise package fails.
-    - name: Check environment hooks
-      run: source install/setup.bash && sh src/test/check-environment.sh
+      # GAZEBO_MODEL_PATH and GAZEBO_RESOURCE_PATH need to be appended to via colcon build, otherwise package fails.
+      - name: Check environment hooks
+        run: docker run ezrassor_sim_gazebo /check-environment.sh
