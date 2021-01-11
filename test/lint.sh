@@ -1,7 +1,6 @@
 #!/bin/bash
+# flake8: noqa
 
-python -m pip install --upgrade pip black flake8
-
-python -m black --check .
-
-python -m flake8 .
+python3 -m pip install --upgrade pip black flake8
+python3 -m black --check .
+python3 -m flake8 .
