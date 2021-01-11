@@ -17,11 +17,8 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@v2
 
-      - name: Get dir
-        run: pwd && ls
-
       - name: Check Black formatting and PEP8 compliance
-        run: bash src/test/lint.sh
+        run: bash test/lint.sh
 
   test:
     runs-on: ubuntu-latest
