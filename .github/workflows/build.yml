@@ -21,7 +21,7 @@ jobs:
         run: bash test/lint.sh
 
   test:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-20.04
     steps: 
       - name: Pull repository
         uses: actions/checkout@v2
