@@ -1,28 +1,21 @@
 <?xml version="1.0"?>
-<!-- Package metadata for the ezrassor_sim_gazebo ROS package.
-     Written by Tiger Sachse. -->
-<package format="2">
+<?xml-model href="http://download.ros.org/schema/package_format3.xsd" schematypens="http://www.w3.org/2001/XMLSchema"?>
+
+<!-- This file specifies metadata for the ezrassor_sim_gazebo ROS package. -->
+<package format="3">
   <name>ezrassor_sim_gazebo</name>
+  <version>2.0.0</version>
+  <description>Start a Gazebo simulation and expose it to the ROS2 graph.</description>
+  <url type="website">https://github.com/FlaSpaceInst/ezrassor_sim_gazebo</url>
+  <maintainer email="ez.rassor@gmail.com">EZRASSOR Team</maintainer>
+  <author email="ez.rassor@gmail.com">EZRASSOR Team</author>
   <license>MIT</license>
-  <version>1.1.1</version>
-  <author email="Ronald.Marrero@outlook.com">Ronald Marrero</author>
-  <maintainer email="Harrison.W.Black@gmail.com">Harrison Black</maintainer>
-  <maintainer email="Ronald.Marrero@outlook.com">Ronald Marrero</maintainer>
-  <url type="website">https://github.com/FlaSpaceInst/EZ-RASSOR</url>
-  <description>Worlds and other model-related data for the EZ-RASSOR.</description>
 
-  <!-- A list of package dependencies. -->
-  <depend>xacro</depend>
-  <depend>gazebo_ros</depend>
-  <depend>gazebo_plugins</depend>
-  <depend>robot_state_publisher</depend>
-  <buildtool_depend>catkin</buildtool_depend>
+  <buildtool_depend>ament_python</buildtool_depend>
+  <depend>gazebo_ros_pkgs</depend>
+  <depend>ros2launch</depend>
 
-  <!-- This export hack is needed to allow Gazebo to reference the models in
-       this package without needing to copy the files anywhere or do any
-       special magic. For example: the dem/ and materials/ folders in this
-       package can be referenced by Gazebo using the package name. *magic* -->
   <export>
-    <gazebo_ros gazebo_plugin_path="${prefix}/lib" gazebo_model_path="${prefix}/.."/>
+    <build_type>ament_python</build_type>
   </export>
 </package>
