@@ -1,0 +1,13 @@
+material rock/large_alt
+{
+  technique
+  {
+    pass
+    {
+      texture_unit
+      {
+        texture lunar_soil.jpg
+      }
+    }
+  }
+}

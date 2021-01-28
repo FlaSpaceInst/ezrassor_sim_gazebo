@@ -1,0 +1,8 @@
+# https://colcon.readthedocs.io/en/released/user/configuration.html#colcon-pkg-files
+
+# Hook below prepends the system's Gazebo environment variables with the
+# paths to the custom models and resources provided by this package
+{
+    "name": "ezrassor_sim_gazebo",
+    "hooks": ["share/ezrassor_sim_gazebo/hook/ezrassor_sim_gazebo.sh"]    
+} 

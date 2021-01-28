@@ -1,0 +1,47 @@
+name: Build
+on:
+  pull_request:
+    branches:
+      - development
+  push:
+    branches:
+      - development
+
+jobs:
+  lint:
+    runs-on: ubuntu-20.04
+    steps:
+      - name: Pull repository
+        uses: actions/checkout@v2
+
+      - name: Set up Python
+        uses: actions/setup-python@v2
+
+      - name: Check Black formatting and PEP8 compliance
+        run: bash test/lint.sh
+
+  test:
+    runs-on: ubuntu-20.04
+    steps: 
+      - name: Pull repository
+        uses: actions/checkout@v2
+
+      - name: Make log directory
+        run: mkdir log
+
+      - name: Build package image (foxy)
+        run: docker build -t ezrassor_sim_gazebo -f build/Dockerfile .
+
+      - name: Test build
+        run: docker run --volume $(pwd)/log:/ezrassor_ws/log ezrassor_sim_gazebo colcon build
+
+      - name: Upload build logs
+        uses: actions/upload-artifact@v1
+        if: always()
+        with:
+          name: build-logs
+          path: log/latest_build
+
+      # GAZEBO_MODEL_PATH and GAZEBO_RESOURCE_PATH need to be appended to via colcon build, otherwise package fails.
+      - name: Check environment hooks
+        run: docker run ezrassor_sim_gazebo /check-environment.sh
