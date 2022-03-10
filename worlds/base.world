@@ -1,6 +1,13 @@
 <?xml version="1.0"?>
 <sdf version="1.4">
     <world name="base_world"> 
+        <plugin name="gazebo_ros_state" filename="libgazebo_ros_state.so">
+            <ros>
+                <namespace>/gazebo</namespace>
+                <argument>model_states:=model_states_demo</argument>
+            </ros>
+            <update_rate>1000.0</update_rate>
+        </plugin>
         <physics type="ode">
           <gravity>0 0 -9.81</gravity>
         </physics>

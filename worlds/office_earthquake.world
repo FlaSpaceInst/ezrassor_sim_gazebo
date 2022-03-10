@@ -1,6 +1,13 @@
 <?xml version="1.0"?>
 <sdf version='1.6'>
   <world name='default'>
+    <plugin name="gazebo_ros_state" filename="libgazebo_ros_state.so">
+      <ros>
+        <namespace>/gazebo</namespace>
+        <argument>model_states:=model_states_demo</argument>
+      </ros>
+      <update_rate>1000.0</update_rate>
+    </plugin>
     <scene>
       <shadows>0</shadows>
       <ambient>0.4 0.4 0.4 1</ambient>

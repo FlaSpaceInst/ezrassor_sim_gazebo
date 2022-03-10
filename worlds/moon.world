@@ -1,5 +1,12 @@
 <sdf version='1.6'>
   <world name='moon'>
+    <plugin name="gazebo_ros_state" filename="libgazebo_ros_state.so">
+      <ros>
+        <namespace>/gazebo</namespace>
+        <argument>model_states:=model_states_demo</argument>
+      </ros>
+      <update_rate>1000.0</update_rate>
+    </plugin>
     <scene>
       <background>0 0 0 255</background>
       <ambient>0.4 0.4 0.4 1</ambient>
